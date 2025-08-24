@@ -637,6 +637,238 @@ body {
     }
 }
 
+/* Visualizations */
+.visualizations-container {
+    margin: 2rem 0;
+}
+
+.viz-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.viz-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    min-height: 300px;
+}
+
+.viz-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.viz-card canvas {
+    max-height: 250px;
+}
+
+/* Progress Goals */
+.goals-container {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.goals-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+}
+
+.goal-item {
+    margin-bottom: 1.5rem;
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.goal-name {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.goal-progress {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.progress-bar {
+    height: 24px;
+    background: var(--light);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+    transition: width 1.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.recycling-progress {
+    background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.cycling-progress {
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.energy-progress {
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.progress-text {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Carbon Calculator */
+.calculator-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    color: white;
+    box-shadow: var(--shadow-lg);
+}
+
+.calc-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.calc-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.calc-input label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.95;
+}
+
+.calc-input input {
+    padding: 0.75rem;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.calc-input input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.calc-input input:focus {
+    outline: none;
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.2);
+}
+
+.calc-btn {
+    width: 100%;
+    background: white;
+    color: var(--primary-color);
+    font-weight: 700;
+    padding: 1rem;
+}
+
+.calc-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.calc-result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+.result-value {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.result-number {
+    font-size: 3rem;
+    font-weight: 700;
+    display: block;
+}
+
+.result-unit {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.result-comparison {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+}
+
+.comparison-value {
+    font-weight: 700;
+    margin-left: 0.5rem;
+}
+
+#carbonChart {
+    max-height: 200px;
+    margin-top: 1rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-title {
@@ -658,5 +890,21 @@ body {
     .footer-content {
         flex-direction: column;
         gap: 2rem;
+    }
+    
+    .viz-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .calc-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .calc-input {
+        margin-bottom: 1rem;
+    }
+    
+    .result-number {
+        font-size: 2rem;
     }
 }

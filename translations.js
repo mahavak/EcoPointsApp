@@ -139,6 +139,32 @@ const translations = {
             hoursAgo: 'hours ago',
             dayAgo: 'day ago',
             daysAgo: 'days ago'
+        },
+        // Visualizations
+        viz: {
+            weeklyActivity: 'Weekly Activity',
+            impactBreakdown: 'Impact Breakdown',
+            monthlyGoals: 'Monthly Goals',
+            points: 'Points',
+            actions: 'Actions'
+        },
+        // Goals
+        goals: {
+            recycling: 'Recycling Goal',
+            cycling: 'Cycling Goal',
+            energy: 'Energy Saving'
+        },
+        // Calculator
+        calc: {
+            title: 'Carbon Footprint Calculator',
+            transport: 'Daily Commute (km)',
+            electricity: 'Monthly Electricity (kWh)',
+            gas: 'Monthly Gas (m³)',
+            waste: 'Weekly Waste (kg)',
+            calculate: 'Calculate Impact',
+            comparison: 'Compared to average:',
+            belowAverage: 'below average 🌱',
+            aboveAverage: 'above average'
         }
     },
     nl: {
@@ -280,6 +306,32 @@ const translations = {
             hoursAgo: 'uur geleden',
             dayAgo: 'dag geleden',
             daysAgo: 'dagen geleden'
+        },
+        // Visualizations
+        viz: {
+            weeklyActivity: 'Wekelijkse Activiteit',
+            impactBreakdown: 'Impact Verdeling',
+            monthlyGoals: 'Maandelijkse Doelen',
+            points: 'Punten',
+            actions: 'Acties'
+        },
+        // Goals
+        goals: {
+            recycling: 'Recycling Doel',
+            cycling: 'Fiets Doel',
+            energy: 'Energie Besparen'
+        },
+        // Calculator
+        calc: {
+            title: 'CO₂ Voetafdruk Calculator',
+            transport: 'Dagelijks Woon-Werk (km)',
+            electricity: 'Maandelijks Elektriciteit (kWh)',
+            gas: 'Maandelijks Gas (m³)',
+            waste: 'Wekelijks Afval (kg)',
+            calculate: 'Bereken Impact',
+            comparison: 'Vergeleken met gemiddeld:',
+            belowAverage: 'onder gemiddeld 🌱',
+            aboveAverage: 'boven gemiddeld'
         }
     }
 };
@@ -378,6 +430,11 @@ function updatePageTranslations() {
     }
     if (typeof loadRecentActivities === 'function' && appState.connected) {
         loadRecentActivities();
+    }
+    
+    // Update charts with new language
+    if (typeof updateChartsLanguage === 'function') {
+        updateChartsLanguage();
     }
 }
 
