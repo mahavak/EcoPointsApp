@@ -127,7 +127,7 @@ function updateActiveNavLink(activeLink) {
 async function connectWallet() {
     try {
         // Simulate wallet connection
-        showToast('Connecting to Constellation Network...', 'info');
+        showToast(t('toasts.connectingWallet'), 'info');
         
         // In a real app, this would connect to a Constellation wallet
         setTimeout(() => {
@@ -136,16 +136,16 @@ async function connectWallet() {
             
             // Update UI
             const walletBtn = document.getElementById('connectWallet');
-            walletBtn.innerHTML = '<i class="fas fa-check-circle"></i> Connected';
+            walletBtn.innerHTML = `<i class="fas fa-check-circle"></i> ${t('nav.connected')}`;
             walletBtn.classList.add('connected');
             
             // Load user profile
             loadUserProfile();
             
-            showToast('Wallet connected successfully!', 'success');
+            showToast(t('toasts.walletConnected'), 'success');
         }, 1500);
     } catch (error) {
-        showToast('Failed to connect wallet', 'error');
+        showToast(t('toasts.walletFailed'), 'error');
     }
 }
 
@@ -219,7 +219,7 @@ async function submitAction(e) {
     e.preventDefault();
     
     if (!appState.connected) {
-        showToast('Please connect your wallet first', 'error');
+        showToast(t('toasts.connectFirst'), 'error');
         return;
     }
     
@@ -230,12 +230,12 @@ async function submitAction(e) {
         useLocation: document.getElementById('useLocation').checked
     };
     
-    showToast('Submitting action to blockchain...', 'info');
+    showToast(t('toasts.submittingAction'), 'info');
     
     // Simulate blockchain transaction
     setTimeout(() => {
         const points = document.getElementById('estimatedPoints').textContent;
-        showToast(`Action recorded! You earned ${points} EcoPoints!`, 'success');
+        showToast(`${t('toasts.actionRecorded')} ${points} EcoPoints!`, 'success');
         
         // Reset form
         document.getElementById('actionForm').reset();
@@ -272,21 +272,21 @@ function loadLeaderboard(period) {
 // Rewards
 function redeemReward(rewardName, cost) {
     if (!appState.connected) {
-        showToast('Please connect your wallet first', 'error');
+        showToast(t('toasts.connectFirst'), 'error');
         return;
     }
     
     const userPoints = parseInt(document.getElementById('userPoints').textContent);
     
     if (userPoints < cost) {
-        showToast('Insufficient EcoPoints for this reward', 'error');
+        showToast(t('toasts.insufficientPoints'), 'error');
         return;
     }
     
-    showToast(`Redeeming ${rewardName}...`, 'info');
+    showToast(`${t('toasts.redeeming')} ${rewardName}...`, 'info');
     
     setTimeout(() => {
-        showToast(`Successfully redeemed ${rewardName}!`, 'success');
+        showToast(`${t('toasts.redeemed')} ${rewardName}!`, 'success');
         
         // Update user points
         const newPoints = userPoints - cost;
@@ -316,11 +316,11 @@ function updateNetworkStatus(online, nodeCount) {
     
     if (online) {
         indicator.classList.add('online');
-        text.textContent = `Online (${nodeCount} nodes)`;
+        text.textContent = `${t('footer.online')} (${nodeCount} ${t('footer.nodes')})`;
     } else {
         indicator.classList.remove('online');
         indicator.classList.add('offline');
-        text.textContent = 'Offline';
+        text.textContent = t('footer.offline');
     }
 }
 
